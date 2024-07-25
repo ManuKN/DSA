@@ -13,9 +13,9 @@ let start2 = 0;
             return true
            }
       }
-    return start2++  
+    start2++  
   }
   return false
 }
 
-console.log(isSubsequence('hello','hello moto'));
+console.log(isSubsequence('abc', 'abracadabra'));

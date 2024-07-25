@@ -18,7 +18,7 @@ function maxSubarraySum(arr , num){
    return max
 };
 
-console.log(maxSubarraySum([1,5,6,6,7,2,3,5,1],3));
+console.log(maxSubarraySum([1,5,6,6,7,2,3,5,1],4));
 
 //This is sliding window solution with timecomplexity O(n)
 function maxSubarraySumRefactor(arr , num){
@@ -36,3 +36,22 @@ function maxSubarraySumRefactor(arr , num){
 }
 
 console.log(maxSubarraySumRefactor([1, 5, 6, 6, 7, 2, 3, 5, 1], 3));
+
+
+function maxSubarraySum3(arr , num){
+    if(arr.length < num) return null
+  let max = 0;
+  let temp = 0;
+  for(let i = 0 ; i<num; i++){
+    temp += arr[i]
+  }
+  max = temp
+  for(let i = num; i<arr.length; i++){
+    temp = temp - arr[i -num] + arr[i]
+   max = Math.max(temp , max);
+  }
+  return max
+}
+
+
+console.log(maxSubarraySum3([1, 4, 2, 10, 23, 3, 1, 0, 20], 4))
