@@ -1,16 +1,16 @@
 function stringifyNumbers(obj){
    const newObj = JSON.parse(JSON.stringify(obj));
    for(let key in newObj){
-    if(typeof obj[key] === 'object' && obj[key] !== null){
-        stringifyNumbers(obj[key])
+    if(typeof newObj[key] === 'object' && newObj[key] !== null){
+        newObj[key] = stringifyNumbers(newObj[key])
     }
     else{
-        if(typeof obj[key] === 'number'){
-         key = String(obj[key])
+        if(typeof newObj[key] === 'number'){
+        newObj[key] = String(newObj[key])
         }
     }
-   }
-   return newObj
+}
+return newObj
 }
 
 let obj = {

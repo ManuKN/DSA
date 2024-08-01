@@ -25,6 +25,6 @@ function mpPattern(arr){
 console.log(mpPattern([-3 , -2 , -1 , 0 , 1 , 5 , 8]))
 
 const arr =['manu','tejas','arjun']
-let search = 'a'
+let search = 'a';
 const result = arr.filter(e => e.includes(search));
 console.log(result)
