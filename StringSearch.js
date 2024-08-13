@@ -27,4 +27,4 @@ function stringSearch(longstring , shortstring){
  return Count
 }
 
-console.log(stringSearch('presidency universityiver','iver'))
+console.log(stringSearch('presidency universityiver','iver'));
