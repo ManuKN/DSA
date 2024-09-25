@@ -14,11 +14,12 @@ function pivot(arr, startindex = 0, endindex = arr.length - 1) {
   swap(arr, startindex, pivotIndex); 
   return pivotIndex; 
 }
-   
+   //Helper function1
    function swap(arr , i  , j) {
        [arr[i], arr[j]] = [arr[j],arr[i]]
    }
    
+   //Helper function2
    function QuickSort(arr , low = 0 , high = arr.length - 1){
     if(low < high){
      let pivotindex = pivot(arr ,low , high)
