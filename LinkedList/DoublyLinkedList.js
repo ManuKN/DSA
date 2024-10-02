@@ -76,7 +76,7 @@ class DoublyLinkedList {
         prevVal = prevVal.prev;
         count--;
       }
-      return prevVal.val;
+      return prevVal;
     } else {
       let count = 0;
       let nextVal = this.head;
@@ -84,8 +84,42 @@ class DoublyLinkedList {
         nextVal = nextVal.next;
         count++;
       }
-      return nextVal.val;
+      return nextVal;
     }
+  }
+  Set(index ,val){
+   let current = this.Get(index);
+   if(current){
+    current.val = val;
+    return true;
+   }else return false;
+  }
+  Insert(index , val){
+   if(index > this.length || index < 0) return false
+   if(!index) return !!this.unshift(val)
+   if(index === this.length) return !!this.Push(val)
+   else{
+    let newNode = new Node(val);
+    let prevnode = this.Get(index-1);
+    newNode.prev = prevnode;
+    newNode.next = prevnode.next;
+    prevnode.next.prev = newNode;
+    prevnode.next = newNode;
+   }
+   this.length++;
+   return true;
+  }
+  Remove(index){
+       if(index < 0 || index > this.length) return undefined
+       if(!index) return !!this.shift()
+       if(index === this.length) return !!this.Pop()
+       let removedNode = this.Get(index)
+      removedNode.prev.next = removedNode.next;
+      removedNode.next.prev = removedNode.prev;
+      removedNode.next = null;
+      removedNode.prev = null;
+      this.length--
+      return removedNode
   }
 }
 let Dlist = new DoublyLinkedList();
@@ -97,3 +131,12 @@ console.log(Dlist.shift());
 console.log(Dlist.unshift('chethu'));
 console.log(Dlist.Get(2));
 console.log(Dlist);
+console.log(Dlist.Set(1 , "Manu"))
+console.log(Dlist);
+console.log(Dlist.Insert(2,"nkn"))
+console.log(Dlist);
+console.log(Dlist.Remove(1))
+console.log(Dlist);
+
+
+

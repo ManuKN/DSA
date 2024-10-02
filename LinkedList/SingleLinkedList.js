@@ -91,7 +91,7 @@ class SingleLinkedList {
 
   Insert(index, val) {
     if (index < 0 || index > this.length) return false;
-    if (index === this.length) return !!this.push(val); // !! is a kind o f convert thing to boolean after pushing the push retirn the entire list noe what !! will do is if the restureis truthy then it will be true else false
+    if (index === this.length) return !!this.push(val); // !! is a kind o f convert thing to boolean after pushing the push retirn the entire list noe what !! will do is if the resture is truthy then it will be true else false
     if (index === 0) return !!this.unshift(val);
     let newnode = new Node(val);
     let prevnode = this.Get(index - 1);
