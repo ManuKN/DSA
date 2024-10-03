@@ -137,6 +137,10 @@ console.log(Dlist.Insert(2,"nkn"))
 console.log(Dlist);
 console.log(Dlist.Remove(1))
 console.log(Dlist);
-
-
+let color = ["red","yellow","green","voilet"]
+let colors = Array.from({length : 4},(v ,i) =>({
+  id : i+1,
+  banna : color[i]
+}))
+console.log(colors)
 
