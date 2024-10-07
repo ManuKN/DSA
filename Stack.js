@@ -5,6 +5,7 @@ class Node{
     }
 }
 
+//this Stack implemented using single linked list😁
 class Stack{
     constructor(){
         this.first = null;
