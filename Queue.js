@@ -30,12 +30,11 @@ class Queue {
   Dequeue() {
     if (!this.size || !this.first) return null;
     let removedNode = this.first;
-    if (!this.size === 0) {
+    if (this.size === 0) {
       this.first = null;
       this.last = null;
     } else {
-      this.first = removedNode.next;
-      this.first.next = null;
+      this.first = this.first.next;
     }
     this.size--;
     return removedNode.val;
@@ -49,6 +48,13 @@ console.log(queue.Enqueue(8));
 
 console.log(queue);
 
-console.log(queue.Dequeue())
 console.log(queue.Dequeue());
+console.log(queue);
+console.log(queue.Enqueue(12));
+console.log(queue);
+console.log(queue.Dequeue());
+console.log(queue);
+
+
+
 
