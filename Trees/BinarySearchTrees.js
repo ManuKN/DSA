@@ -125,6 +125,8 @@ class BinarySearchTree {
       if (node.right) PostOrder(node.right);
       data.push(node.value);
     };
+    PostOrder(current);
+    return data;
   }
 
   DFSInOrder() {
@@ -153,4 +155,5 @@ console.log(Tree);
 console.log(Tree.Find(11));
 console.log(Tree.BFS());
 console.log(Tree.DFSPreOrder());
+console.log(Tree.DFSPostOrder());
 console.log(Tree.DFSInOrder());
