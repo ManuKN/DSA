@@ -125,17 +125,54 @@ function rotateArrayByOnePlace(arr, n) {
 
 rotateArrayByOnePlace([3, 7, 65, 114, 69], 5);
 
-function rotateArrayByKelements(arr, n, k, direction = 'left') {
+//Brute force approach to shift the no elemnts to the kth position
+function rotateArrayByKelements1(arr, n, k, direction = 'left') {
   if (!arr.length) return 'Empty Array';
+  const effectiveK = k % arr.length;
   if (direction === 'left') {
-    const LatestArray = arr.concat(arr.slice(0, k));
-    LatestArray.splice(0, k);
-    return LatestArray;
+    // const LatestArray = arr.concat(arr.slice(0, k));
+    // LatestArray.splice(0, k);
+    // return LatestArray;
+    return [...arr.slice(effectiveK), ...arr.slice(0, effectiveK)];
   } else {
-    const LatestArray = arr.slice(arr.length - k);
-    const FinalArray = LatestArray.concat(arr);
-    FinalArray.splice(FinalArray.length - k);
-    return FinalArray;
+    // const LatestArray = arr.slice(arr.length - k);
+    // const FinalArray = LatestArray.concat(arr);
+    // FinalArray.splice(FinalArray.length - k);
+    // return FinalArray;
+    return [...arr.slice(n - k), ...arr.slice(0, n - k)];
   }
 }
-console.log(rotateArrayByKelements([3, 7, 65, 114, 69], 5, 2, 'right'));
+console.log(rotateArrayByKelements1([3, 7, 65, 114, 69], 5, 2, 'right'));
+
+//Optimal Aproach to solve shift the no elemnts to the kth position
+function moveZerosToEnd(arr) {
+  if (!arr.length) return 'Empty Arrary';
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === 0) {
+      arr.push(...arr.splice(i, 1));
+    }
+  }
+  return arr;
+}
+
+console.log(moveZerosToEnd([12, 0, 45, 23, 0, 56, 76, 0]));
+
+function unionNumbers(arr1, arr2) {
+  if (!arr1.length || !arr2.length) return 'Found one Empty Array';
+  let Union = []
+  const frequency1 = {}; 
+  for (let key of arr1) {
+    frequency1[key] = (frequency1[key] || 0) + 1;
+  }
+  for (let key of arr2) {
+    frequency1[key] = (frequency1[key] || 0) + 1;
+  }
+  for(let key in frequency1){
+    if(frequency1[key] === 1){
+      Union.push(key)
+    }
+  }
+  return Union;
+}
+
+console.log(unionNumbers([12, 0, 45, 23, 0, 56, 76, 0], [3, 7, 76,  65, 114, 69]));
