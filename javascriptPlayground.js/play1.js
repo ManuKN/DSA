@@ -159,20 +159,83 @@ console.log(moveZerosToEnd([12, 0, 45, 23, 0, 56, 76, 0]));
 
 function unionNumbers(arr1, arr2) {
   if (!arr1.length || !arr2.length) return 'Found one Empty Array';
-  let Union = []
-  const frequency1 = {}; 
+  let Union = [];
+  const frequency1 = {};
   for (let key of arr1) {
     frequency1[key] = (frequency1[key] || 0) + 1;
   }
   for (let key of arr2) {
     frequency1[key] = (frequency1[key] || 0) + 1;
   }
-  for(let key in frequency1){
-    if(frequency1[key] === 1){
-      Union.push(key)
+  for (let key in frequency1) {
+    if (frequency1[key] === 1) {
+      Union.push(key);
     }
   }
   return Union;
 }
 
-console.log(unionNumbers([12, 0, 45, 23, 0, 56, 76, 0], [3, 7, 76,  65, 114, 69]));
+console.log(
+  unionNumbers([12, 0, 45, 23, 0, 56, 76, 0], [3, 7, 76, 65, 114, 69])
+);
+
+//this will only work for sorted array
+function missingNo(n, arr) {
+  if (!arr.length) return 'Empty Array';
+  const sorted = arr.sort((a, b) => a - b);
+  let missingNO = [];
+  for (let i = 0; i < n; i++) {
+    if (sorted[i] && sorted[i + 1] !== sorted[i] + 1) {
+      missingNO.push(sorted[i] + 1);
+    }
+  }
+  return missingNO;
+}
+
+function missingNo2(n, arr) {
+  if (!arr.length) return 'Empty Array';
+  const MaxNum = Math.max(...arr);
+  const fullSet = new Set(Array.from({ length: MaxNum }, (_, i) => i + 1));
+  for (let num of arr) {
+    fullSet.delete(num);
+  }
+  return Array.from(fullSet);
+}
+
+console.log(missingNo2(9, [1, 4, 2, 3, 6, 5, 7, 9]));
+
+function maxconsecutiveOnes(arr) {
+  if (!arr.length) return 'Empty Array';
+  let Count = 0;
+  let maxOnes = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === 1) {
+      Count++;
+    } else {
+      Count = 0;
+    }
+    maxOnes = Math.max(maxOnes, Count);
+  }
+  return maxOnes;
+}
+
+console.log(maxconsecutiveOnes([1, 1, 0, 1, 1, 1]));
+
+function findNumberThatAppearOnce(arr) {
+  if (!arr.length) return 'Empty Array';
+  const frequency = {};
+  for (let key of arr) {
+    frequency[key] = (frequency[key] || 0) + 1;
+  }
+  for (let key in frequency) {
+    if (frequency[key] === 1) {
+      return Number(key);
+    }
+  }
+}
+
+console.log(findNumberThatAppearOnce([2 ,3  ,2 ,4 ,3 ,4 ,5 ,6 ,6,7 ,8 ,7 ,8]))
+
+function longestSubArray(arr , k){
+ if(!arr.length) return "Empty Array";
+}
