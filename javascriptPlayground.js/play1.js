@@ -234,8 +234,81 @@ function findNumberThatAppearOnce(arr) {
   }
 }
 
-console.log(findNumberThatAppearOnce([2 ,3  ,2 ,4 ,3 ,4 ,5 ,6 ,6,7 ,8 ,7 ,8]))
+console.log(findNumberThatAppearOnce([2, 3, 2, 4, 3, 4, 5, 6, 6, 7, 8, 7, 8]));
 
-function longestSubArray(arr , k){
- if(!arr.length) return "Empty Array";
+function sortAnArray(arr) {
+  if (!arr.length) return 'Empty Array';
+  let n = arr.length;
+  for(let i = 0; i < n-1; i++){
+    for(let j = 0; j<n-i-1; j++){
+      if(arr[j] > arr[j+1]){
+        swap(j , j+1 , arr)
+      }
+    }
+  }
+  return arr;
 }
+console.log(sortAnArray([2, 1, 0, 2, 0, 1]));
+
+//very important for interview please practice;
+function LongestSubStringWithGivienSum(arr, sum) {
+  if (!arr.length) return 'Empty Array';
+  let longestArray = [];
+  let maxLength = 0;
+  let SumCount = 0;
+  let start = 0;
+  for (let end = 0; end < arr.length; end++) {
+    SumCount += arr[end];
+    while (SumCount > sum && start <= end) {
+      SumCount -= arr[start];
+      start++;
+    }
+    if (SumCount === sum) {
+      const temp = arr.slice(start, end + 1);
+      if (temp.length > maxLength) {
+        longestArray = temp;
+        maxLength = temp.length;
+      }
+    }
+  }
+  return longestArray;
+}
+
+console.log(LongestSubStringWithGivienSum([1, 4, 2, 10, 23, 3, 1, 0, 20], 7));
+
+function twoSum(arr, sum) {
+  if (!arr.length) return 'Empty Array';
+  //let array = [];
+  let sumCount = 0;
+  let start = 0;
+  let next = 1;
+  for (let i = start; i < arr.length; i++) {
+    for (let j = next; j < arr.length; i++) {
+      if (arr[i] + arr[j] === sum) {
+        console.log(arr[i] + arr[j]);
+        return 'Yes';
+      }
+    }
+  }
+  return 'No';
+}
+
+console.log(twoSum([2, 6, 5, 7, 11], 14));
+
+function swap(index1, index2, arr) {
+  [arr[index1], arr[index2]] = [arr[index2], arr[index1]];
+}
+
+function sortAnArray(arr) {
+  if (!arr.length) return 'Empty Array';
+  let next = 1;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] > arr[next]) {
+      swap(i, next, arr);
+      next++;
+    }
+  }
+  return arr;
+}
+
+console.log(sortAnArray([2, 1, 0, 2, 0, 1]));

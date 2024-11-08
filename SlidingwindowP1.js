@@ -54,34 +54,3 @@ function maxSubarraySum3(arr, num) {
 }
 
 console.log(maxSubarraySum3([1, 4, 2, 10, 23, 3, 1, 0, 20], 4));
-
-//very important for interview please practice;
-function LongestSubStringWithGivienSum(arr, sum) {
-  if (!arr.length) return 'Empty Array';
-  let longestArray = [];
-  let maxLength = 0;
-  let SumCount = 0;
-  let start = 0;
-  for (let end = 0; end < arr.length; end++) {
-    SumCount += arr[end];
-    while (SumCount > sum && start <= end) {
-      SumCount -= arr[start];
-      start++;
-    }
-    if (SumCount === sum) {
-      const temp = arr.slice(start, end + 1);
-      if (temp.length > maxLength) {
-        longestArray = temp;
-        maxLength = temp.length;
-      }
-    }
-  }
-  return longestArray;
-}
-
-console.log(LongestSubStringWithGivienSum([1, 4, 2, 10, 23, 3, 1, 0, 20], 7));
-
-
-function LongestSubStringWithGivienSum2(arr , sum){
-  
-}
