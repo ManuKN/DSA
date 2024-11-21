@@ -120,5 +120,3 @@ function infixToprefix(infix) {
 }
 
 console.log(infixToprefix('(a + b * (c ^ (d - e))) ^ (f + g * h - i)'));
-
-function prefixToinfix(prefix) {}
