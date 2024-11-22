@@ -47,3 +47,25 @@ function PreviousSmallerElement(arr) {
 }
 
 console.log(PreviousSmallerElement([4, 5, 2, 10, 8]));
+
+function NumberOfNGEsToTheRight(arr, indices) {
+  if (!arr.length) return 'Empty array';
+  if (!indices.length) return 'Empty indices';
+  let stack = [];
+  for (let i = 0; i < indices.length; i++) {
+    let count = 0;
+    for (let j = indices[i] + 1; j < arr.length; j++) {
+      if (arr[j] > arr[indices[i]]) {
+        count++;
+        console.log(count);
+      }
+    }
+    stack.push(count);
+  }
+  return stack.toString();
+}
+
+// Time complexity - O(Q * N);
+// Space Complexity - O(Q)
+
+console.log(NumberOfNGEsToTheRight([1, 2, 3, 4, 1], [0, 3]));
