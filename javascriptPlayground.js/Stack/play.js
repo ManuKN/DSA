@@ -25,29 +25,24 @@ function GreaterElementsUsingStack(arr) {
   return stack;
 }
 
-console.log(
-  GreaterElementsUsingStack([1, 8, -1, -100, -1, 222, 1111111, -111111])
-);
+console.log(GreaterElementsUsingStack([3, 1, 2, 4]));
 
 function PreviousSmallerElement(arr) {
   if (!arr.length) return 'Empty array';
   let stack = [];
   for (let i = 0; i < arr.length; i++) {
-    let smallestElement = -1;
-    if (i > 0) {
-      for (let j = i - 1; j >= 0; j--) {
-        if (arr[j] < arr[i]) {
-          smallestElement = arr[j];
-          break;
-        }
-      }
+    while (stack.length && stack[stack.length - 1] >= arr[i]) {
+      stack.pop();
     }
-    stack.push(smallestElement);
+    let previousSmallerElement = stack.length ? stack[stack.length - 1] : -1;
+    stack.push(previousSmallerElement);
   }
   return stack;
 }
 
-console.log(PreviousSmallerElement([4, 5, 2, 10, 8]));
+console.log(PreviousSmallerElement([3, 1, 2, 4]));
+
+console.log(PreviousSmallerElement([[3, 1, 2, 4]]));
 
 function NumberOfNGEsToTheRight(arr, indices) {
   if (!arr.length) return 'Empty array';
@@ -120,7 +115,7 @@ function SumofSubArrayMin(arr) {
   for (let i = 0; i < arr.length; i++) {
     left = i - PSE[i];
     right = NGE[i] - i;
-    total += (total + ((right * left * arr[i]) % mod)) % mod;
+    total = (total + ((right * left * arr[i]) % mod)) % mod;
   }
   return total;
 }
@@ -129,6 +124,7 @@ console.log(SumofSubArrayMin([3, 1, 2, 4]));
 
 //worst case using for loop inside a for loop
 
+//using stack
 function SumofSubArrayMin2(arr) {
   if (!arr.length) return 'Empty Array';
   let total = 0;
@@ -144,3 +140,45 @@ function SumofSubArrayMin2(arr) {
 }
 
 console.log(SumofSubArrayMin2([1, 2, 4]));
+
+function Astriods(arr) {
+  if (!arr.length) return 'Empty Array';
+  let stack = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] > 0) {
+      stack.push(arr[i]);
+    } else {
+      while (
+        stack.length !== 0 &&
+        stack[stack.length - 1] > 0 &&
+        stack[stack.length - 1] < Math.abs(arr[i])
+      ) {
+        stack.pop();
+      }
+      if (stack.length !== 0 && stack[stack.length - 1] == Math.abs(arr[i])) {
+        stack.pop();
+      } else if (stack.length == 0 || stack[stack.length - 1] < 0) {
+        stack.push(arr[i]);
+      }
+    }
+  }
+  return stack;
+}
+
+console.log(Astriods([10, 2, -5]));
+
+function SumofSubArrayRanges(arr) {
+  if (!arr.length) return 'Empty array';
+  let total = 0;
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i; j < arr.length; j++) {
+      let subArray = arr.slice(i, j + 1);
+      let min = Math.min(...subArray);
+      let max = Math.max(...subArray);
+      total += max - min;
+    }
+  }
+  return total;
+}
+
+console.log(SumofSubArrayRanges([4, -2, -3, 4, 1]));
