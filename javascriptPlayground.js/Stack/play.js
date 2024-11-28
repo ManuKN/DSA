@@ -180,5 +180,34 @@ function SumofSubArrayRanges(arr) {
   }
   return total;
 }
-
 console.log(SumofSubArrayRanges([4, -2, -3, 4, 1]));
+
+function RemoveKDigits(str, K) {
+  if (!str.length) return 'Empty Numbers';
+  let stack = [];
+  for (let i = 0; i < str.length; i++) {
+    while (stack.length !== 0 && K > 0 && stack[stack.length - 1] > str[i]) {
+      stack.pop();
+      K--;
+    }
+    stack.push(str[i]);
+  }
+  while (K > 0) {
+    stack.pop();
+    K--;
+  }
+
+  if (!stack.length) return '0';
+  let res = '';
+  while (stack.length !== 0) {
+    res = res + stack.pop();
+  }
+
+  while (res.length !== 0 && res[res.length - 1] == 0) {
+    res = res.slice(0, -1);
+  }
+  if (!res.length) return '0';
+  return res.split('').reverse().join('');
+}
+
+console.log(RemoveKDigits('10200', 1));
