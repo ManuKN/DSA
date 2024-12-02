@@ -10,7 +10,7 @@ function reverse(str){
 return helper(strArray)
 }
 
-console.log(reverse('Nxtgen'))
+console.log(reverse('malayalam'))
 
 //simplest solution
 // function reverse(str) {
