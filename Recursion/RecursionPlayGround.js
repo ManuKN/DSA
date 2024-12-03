@@ -55,7 +55,7 @@ function ReverseAStack(stack) {
       return;
     }
     let top = stack.pop();
-    insertABottom(stack , element);
+    insertABottom(stack, element);
     stack.push(top);
   }
   insertABottom(stack, temp);
@@ -63,3 +63,35 @@ function ReverseAStack(stack) {
 }
 
 console.log(ReverseAStack([3, 1, 4, 2]));
+
+function print(num) {
+  let word = '';
+  let final = [];
+  word += '0';
+  GenerateWithoutConsecutive1s(word, num);
+  word += '1';
+  GenerateWithoutConsecutive1s(word, num);
+
+  function GenerateWithoutConsecutive1s(str, num) {
+    let len = str.length;
+    if (num === 0) return undefined;
+    if (num === len) {
+      final.push(str);
+      return;
+    } else if (str[len - 1] == '1') {
+      GenerateWithoutConsecutive1s(str + '0', num);
+    } else {
+      GenerateWithoutConsecutive1s(str + '0', num);
+      GenerateWithoutConsecutive1s(str + '1', num);
+    }
+  }
+  return final;
+}
+
+//Time COmplexity = O(2^n)
+//Space complexity = O(n)
+
+console.log(print(4));
+
+function GenerateParathesis(){
+}
