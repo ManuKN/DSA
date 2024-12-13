@@ -41,6 +41,14 @@ function sortStackInRecursion(stack) {
 
 console.log(sortStackInRecursion([11, 2, 32, 3, 41]));
 
+/**
+ * Reverses the order of elements in a given stack.
+ *
+ * This function uses a recursive approach to reverse the stack, utilizing a helper function to insert elements at the bottom of the stack.
+ *
+ * @param {Array} stack - The input stack to be reversed.
+ * @returns {Array} The reversed stack, or 'Empty Stack' if the input stack is empty.
+ */
 function ReverseAStack(stack) {
   if (!stack.length) return 'Empty Stack';
   if (stack.length === 0) return;
@@ -64,34 +72,96 @@ function ReverseAStack(stack) {
 
 console.log(ReverseAStack([3, 1, 4, 2]));
 
-function print(num) {
-  let word = '';
-  let final = [];
-  word += '0';
-  GenerateWithoutConsecutive1s(word, num);
-  word += '1';
-  GenerateWithoutConsecutive1s(word, num);
-
-  function GenerateWithoutConsecutive1s(str, num) {
-    let len = str.length;
-    if (num === 0) return undefined;
-    if (num === len) {
-      final.push(str);
-      return;
-    } else if (str[len - 1] == '1') {
-      GenerateWithoutConsecutive1s(str + '0', num);
-    } else {
-      GenerateWithoutConsecutive1s(str + '0', num);
-      GenerateWithoutConsecutive1s(str + '1', num);
-    }
-  }
-  return final;
-}
-
 //Time COmplexity = O(2^n)
 //Space complexity = O(n)
 
-console.log(print(4));
+// console.log(print(4));
 
-function GenerateParathesis(){
+/**
+ * Generates all possible combinations of well-formed parentheses for a given number n.
+ *
+ * @param {number} n The number of pairs of parentheses to generate.
+ * @returns {string[]} An array of strings, each representing a unique combination of well-formed parentheses.
+ */
+function GenerateParathesis(n) {
+  let stack = [];
+  let res = [];
+  function backtacking(openN, closedN) {
+    if (openN === n && closedN === n) {
+      res.push(stack.join(''));
+      return;
+    }
+
+    if (openN < n) {
+      stack.push('(');
+      backtacking(openN + 1, closedN);
+      stack.pop();
+    }
+    if (closedN < openN) {
+      stack.push(')');
+      backtacking(openN, closedN + 1);
+      stack.pop();
+    }
+  }
+  backtacking(0, 0);
+  return res;
 }
+
+console.log(GenerateParathesis(3));
+
+function PrintAllSubsequencesPowerSet(str) {
+  if (!str.length) return [''];
+
+  const result = [];
+
+  function generateSubsequences(index, currentSubsequence) {
+    if (index === str.length) {
+      result.push(currentSubsequence);
+      return;
+    }
+
+    generateSubsequences(index + 1, currentSubsequence);
+
+    generateSubsequences(index + 1, currentSubsequence + str[index]);
+  }
+
+  generateSubsequences(0, '');
+
+  return result;
+}
+
+console.log(PrintAllSubsequencesPowerSet('abc'));
+
+function PrefectSumProblem(arr, target) {
+  if (!arr.length) return 'Empty Array';
+  let count = 0;
+  function sumUp(index, currentSum) {
+    if (index === arr.length) {
+      if (currentSum === target) {
+        count++;
+      }
+      return;
+    }
+
+    sumUp(index + 1, currentSum + arr[index]);
+    sumUp(index + 1, currentSum);
+  }
+  sumUp(0, 0);
+  return count;
+}
+
+console.log(PrefectSumProblem([2, 4, 6, 8], 8));
+
+function BetterString(str1, str2) {
+  if (!str1.length) return str2;
+  if (!str2.length) return str1;
+  let subsets1 = PrintAllSubsequencesPowerSet(str1);
+  let subsets2 = subsets1.filter(
+    (ele) => !PrintAllSubsequencesPowerSet(str2).includes(ele)
+  );
+  if (subsets1.length > subsets2.length) return str1;
+  else if (subsets2.length > subsets1.length) return str2;
+  else return str1
+}
+
+console.log(BetterString('abc', 'cba'));
