@@ -161,7 +161,61 @@ function BetterString(str1, str2) {
   );
   if (subsets1.length > subsets2.length) return str1;
   else if (subsets2.length > subsets1.length) return str2;
-  else return str1
+  else return str1;
 }
 
 console.log(BetterString('abc', 'cba'));
+
+function PrintAllSubsequencesPowerSet(nums) {
+  if (!nums.length) return [''];
+
+  const result = [];
+
+  function generateSubsequences(index, currentSubsequence) {
+    if (index === nums.length) {
+      result.push([...currentSubsequence]);
+      return;
+    }
+
+    generateSubsequences(index + 1, currentSubsequence);
+
+     currentSubsequence.push(nums[index]);
+     generateSubsequences(index + 1, currentSubsequence);
+      currentSubsequence.pop();
+  }
+
+  generateSubsequences(0, []);
+
+  return result;
+}
+
+console.log(PrintAllSubsequencesPowerSet([1, 2, 3]));
+
+
+//Ganerate the Permutation of the array
+var permute = function (nums) {
+  const result = [];
+
+  function generatePermutation(currentPermutation, remainingNums) {
+    if (remainingNums.length === 0) {
+      result.push([...currentPermutation]);
+      return;
+    }
+
+    for (let i = 0; i < remainingNums.length; i++) {
+      // Choose the current number and remove it from the remaining numbers
+      currentPermutation.push(remainingNums[i]);
+      generatePermutation(
+        currentPermutation,
+        remainingNums.filter((_, index) => index !== i) // Exclude the chosen number
+      );
+      // Backtrack
+      currentPermutation.pop();
+    }
+  }
+
+  generatePermutation([], nums);
+  return result;
+};
+
+console.log(permute([1 , 2 ,3]))

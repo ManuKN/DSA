@@ -29,5 +29,4 @@ console.log(frequencyCounter2)
     }
     return true
 }
-
 console.log(anagarm('hello','olleh'))
