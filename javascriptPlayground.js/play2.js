@@ -1,3 +1,4 @@
+
 function swap(index1, index2, arr) {
   [arr[index1], arr[index2]] = [arr[index2], arr[index1]];
 }
@@ -120,3 +121,47 @@ function infixToprefix(infix) {
 }
 
 console.log(infixToprefix('(a + b * (c ^ (d - e))) ^ (f + g * h - i)'));
+
+function postfixToinfix(string) {
+  const prefix = string.split(' ')
+  const stack = [];
+  let i = 0;
+  while(i < prefix.length){
+    if (/^[a-zA-Z0-9]+/.test(prefix[i])) {
+      stack.push(prefix[i]);
+    }
+    else{
+      let pop1 = stack.pop();
+      let pop2 = stack.pop();
+      let concat = "(" + pop2 + prefix[i] + pop1 + ")";
+      stack.push(concat);
+    }
+    i++
+  }
+  return stack.pop()
+}
+
+console.log(postfixToinfix("10 2 3 + / 4 1 - * 5 +"))
+
+
+function prefixtoinfix(string){
+const prefix = string.split(" ");
+ let stack  = [];
+ let i=0;
+ while(i < prefix.length){
+  if(/^[a-zA-Z0-9]+/.test(prefix[i])){
+    stack.push(prefix[i])
+  }
+  else{
+    pop1 = stack.pop();
+    pop2 = stack.pop();
+    let concat = "(" + pop1 + prefix[i] + pop2 +")"
+    stack.push(concat)
+  }
+  i++
+ }
+ return stack.pop();
+}
+
+console.log(prefixtoinfix("10 2 3 + / 4 5 * -"))
+

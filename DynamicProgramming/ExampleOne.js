@@ -31,7 +31,7 @@ function fibenocie_tabal(num) {
 console.log(fibenocie_tabal(22));
 
 
-//Done and dusted Data Structure Course of Colt😁😁💥💥\
+//Done and dusted Data Structure Course of Colt😁😁💥💥
 //keep hustling for the difficult concepts and daily atleast 1 or 2 DSA problem is minimum
 //NKN madbeku aste
 
