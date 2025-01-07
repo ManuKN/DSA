@@ -179,9 +179,9 @@ function PrintAllSubsequencesPowerSet(nums) {
 
     generateSubsequences(index + 1, currentSubsequence);
 
-     currentSubsequence.push(nums[index]);
-     generateSubsequences(index + 1, currentSubsequence);
-      currentSubsequence.pop();
+    currentSubsequence.push(nums[index]);
+    generateSubsequences(index + 1, currentSubsequence);
+    currentSubsequence.pop();
   }
 
   generateSubsequences(0, []);
@@ -190,7 +190,6 @@ function PrintAllSubsequencesPowerSet(nums) {
 }
 
 console.log(PrintAllSubsequencesPowerSet([1, 2, 3]));
-
 
 //Ganerate the Permutation of the array
 var permute = function (nums) {
@@ -218,4 +217,77 @@ var permute = function (nums) {
   return result;
 };
 
-console.log(permute([1 , 2 ,3]))
+console.log(permute([1, 2, 3]));
+
+//Generate the letter combination of the phone number.
+//<Myapproach
+
+function letterCombinations(digits) {
+  const phone = {
+    2: ['a', 'b', 'c'],
+    3: ['d', 'e', 'f'],
+    4: ['g', 'h', 'i'],
+    5: ['j', 'k', 'l'],
+    6: ['m', 'n', 'o'],
+    7: ['p', 'q', 'r', 's'],
+    8: ['t', 'u', 'v'],
+    9: ['w', 'x', 'y', 'z'],
+  };
+
+  if (!digits) return [];
+  const result = [];
+  function Generate(index, combination) {
+    if (index === digits.length) {
+      result.push(combination);
+      return;
+    }
+    const letters = phone[digits[index]];
+    for (const letter of letters) {
+      Generate(index + 1, combination + letter);
+    }
+  }
+  Generate(0, '');
+  return result;
+}
+
+console.log(letterCombinations('567'));
+
+//Restore IP Address
+
+function restoreIpAddresses(s) {
+  if (!s) return [];
+  const results = [];
+  function Generate(index, combination, parts) {
+    if (parts === 4 && index === s.length) {
+      results.push(combination);
+      return;
+    }
+
+    if (parts >= 4 || index >= s?.length) {
+      return;
+    }
+
+    for (let len = 1; len <= 3; len++) {
+      if (index + len > s.length) break;
+      const segment = s.substring(index, index + len);
+      if (isValidSegment(segment)) {
+        Generate(
+          index + len,
+          combination + (parts > 0 ? '.' : '') + segment,
+          parts + 1
+        );
+      }
+    }
+  }
+
+  function isValidSegment(segment) {
+    if (segment.length > 1 && segment[0] === '0') return false;
+    const num = parseInt(segment, 10);
+    return num >= 0 && num <= 255;
+  }
+
+  Generate(0, '', 0);
+  return results;
+}
+
+console.log(restoreIpAddresses('25525511135'));
