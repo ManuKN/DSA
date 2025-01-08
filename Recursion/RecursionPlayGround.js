@@ -1,3 +1,5 @@
+// const { createLogger } = require("vite");
+
 function power(base, ex) {
   if (ex === 0) return 1;
   if (ex < 0) {
