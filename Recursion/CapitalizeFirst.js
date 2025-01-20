@@ -1,13 +1,13 @@
 //Using Recursion
-function capitalizeFirst(arr){
-    let newArray = []
-    function helper(arr){
-        if(arr.length === 0) return newArray
-        newArray.push(arr[0][0].toUpperCase() + arr[0].slice(1 , arr[0].length));
-         helper(arr.slice(1 , arr.length))
-    }
-    helper(arr)
-    return newArray
+function capitalizeFirst(arr) {
+  let newArray = [];
+  function helper(arr) {
+    if (arr.length === 0) return newArray;
+    newArray.push(arr[0][0].toUpperCase() + arr[0].slice(1, arr[0].length));
+    helper(arr.slice(1, arr.length));
+  }
+  helper(arr);
+  return newArray;
 }
 
 //Normal iteration method
@@ -16,8 +16,7 @@ function capitalizeFirst(arr){
 //    const newArray = arr.map(element => {
 //     return element[0].toUpperCase() + element.slice(1 , element.length)
 //    });
-//    return newArray
+//    return newArray;
 // }
 
-console.log(capitalizeFirst(['manu','chethan','manoj' , 'chindi']))
-
+console.log(capitalizeFirst(['manu', 'chethan', 'manoj', 'chindi']));

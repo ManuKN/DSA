@@ -1,18 +1,24 @@
 //section9 - ex1
 
-function reverse(str){
- const strArray = str.split('');
- console.log(strArray)
+function Reverse(str){
+ 
  function helper(strArray){
-   if(strArray.length === 0) return ''
+   if(strArray.length === 0) return '';
       return strArray[strArray.length-1] + helper(strArray.slice(0 , strArray.length - 1))
  }
-return helper(strArray)
+
+ function recursionMain(index){
+  if(index === str.length) return [];
+  const reversedString = helper(str[index]);
+  return [reversedString , ...recursionMain(index + 1)]
+ }
+ return recursionMain(0);
 }
 
-console.log(reverse('malayalam'))
+console.log(Reverse(['malayalam' , 'nkn' , 'hello']));
 
-//simplest solution
+
+// simplest solution
 // function reverse(str) {
 //   if (str.length <= 1) return str;
 //   return reverse(str.slice(1)) + str[0];

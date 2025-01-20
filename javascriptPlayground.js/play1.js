@@ -1,11 +1,16 @@
 const object1 = {
-  name: 'Manu',
-  clg: 'Presidency',
+  name: 'ManuGowda',
+  clg: () => {
+    return console.log('nkn');
+  },
+  collage: function () {
+    return console.log('dfgvdfv');
+  },
   place: 'Bengaluru',
 };
 
-const object2 = {};
-
+const object2 = { name: 'Manu', clg: 'Presidency University' };
+console.log(Object(object1));
 Object.assign(object2, object1);
 
 console.log(object2);
@@ -239,10 +244,10 @@ console.log(findNumberThatAppearOnce([2, 3, 2, 4, 3, 4, 5, 6, 6, 7, 8, 7, 8]));
 function sortAnArray(arr) {
   if (!arr.length) return 'Empty Array';
   let n = arr.length;
-  for(let i = 0; i < n-1; i++){
-    for(let j = 0; j<n-i-1; j++){
-      if(arr[j] > arr[j+1]){
-        swap(j , j+1 , arr)
+  for (let i = 0; i < n - 1; i++) {
+    for (let j = 0; j < n - i - 1; j++) {
+      if (arr[j] > arr[j + 1]) {
+        swap(j, j + 1, arr);
       }
     }
   }

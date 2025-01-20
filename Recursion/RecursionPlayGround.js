@@ -267,9 +267,12 @@ function restoreIpAddresses(s) {
       return;
     }
 
+    console.log("making things in the best part")
+
     for (let len = 1; len <= 3; len++) {
       if (index + len > s.length) break;
       const segment = s.substring(index, index + len);
+      console.log(segment);
       if (isValidSegment(segment)) {
         Generate(
           index + len,
@@ -291,3 +294,39 @@ function restoreIpAddresses(s) {
 }
 
 console.log(restoreIpAddresses('25525511135'));
+
+
+
+function PhoneIp(digits){
+const phone = {
+    2: ['a', 'b', 'c'],
+    3: ['d', 'e', 'f'],
+    4: ['g', 'h', 'i'],
+    5: ['j', 'k', 'l'],
+    6: ['m', 'n', 'o'],
+    7: ['p', 'q', 'r', 's'],
+    8: ['t', 'u', 'v'],
+    9: ['w', 'x', 'y', 'z'],
+}
+if(!digits) return [];
+const results = [];
+function helper(index , combination){
+   if(index === digits.length){
+     results.push(combination);
+     return;
+   }
+
+   const letters = phone[digits[index]];
+   console.log(letters)
+   for(let letter of letters){
+      helper(index + 1 , combination + letter)
+   }
+}
+helper(0 , '')
+return results;
+}
+
+console.log(PhoneIp('345'));
+
+
+function
