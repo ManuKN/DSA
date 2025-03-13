@@ -34,6 +34,7 @@ function sortStackInRecursion(stack) {
   function sortRecursively(stack) {
     if (!stack.length) return 'Empty stack';
     const temp = stack.pop();
+
     sortRecursively(stack);
     InsertInSortedStack(stack, temp);
   }
@@ -299,8 +300,8 @@ console.log(restoreIpAddresses('25525511135'));
 
 
 
-function PhoneIp(digits){
-const phone = {
+function PhoneIp(digits) {
+  const phone = {
     2: ['a', 'b', 'c'],
     3: ['d', 'e', 'f'],
     4: ['g', 'h', 'i'],
@@ -309,23 +310,23 @@ const phone = {
     7: ['p', 'q', 'r', 's'],
     8: ['t', 'u', 'v'],
     9: ['w', 'x', 'y', 'z'],
-}
-if(!digits) return [];
-const results = [];
-function helper(index , combination){
-   if(index === digits.length){
-     results.push(combination);
-     return;
-   }
+  }
+  if (!digits) return [];
+  const results = [];
+  function helper(index, combination) {
+    if (index === digits.length) {
+      results.push(combination);
+      return;
+    }
 
-   const letters = phone[digits[index]];
-   console.log(letters)
-   for(let letter of letters){
-      helper(index + 1 , combination + letter)
-   }
-}
-helper(0 , '')
-return results;
+    const letters = phone[digits[index]];
+    console.log(letters)
+    for (let letter of letters) {
+      helper(index + 1, combination + letter)
+    }
+  }
+  helper(0, '')
+  return results;
 }
 
 console.log(PhoneIp('345'));

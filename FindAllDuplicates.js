@@ -6,11 +6,11 @@ function findAllDuplicates(arr) {
     frequencyCounter[key] = (frequencyCounter[key] || 0) + 1;
   }
   for(let key in frequencyCounter){
-      if(frequencyCounter[key] == 2){
+      if(frequencyCounter[key] > 1){
         result.push(Number(key))
       }
   }
   return result
 }
 
-console.log(findAllDuplicates([4, 3, 2, 7, 8, 2, 3, 1]));
+console.log(findAllDuplicates([4, 3, 2, 7, 8, 2, 3, 1 , 2]));
