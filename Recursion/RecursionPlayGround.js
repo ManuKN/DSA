@@ -34,6 +34,7 @@ function sortStackInRecursion(stack) {
   function sortRecursively(stack) {
     if (!stack.length) return "Empty stack";
     const temp = stack.pop();
+
     sortRecursively(stack);
     InsertInSortedStack(stack, temp);
   }

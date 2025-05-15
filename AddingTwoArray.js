@@ -1,32 +1,32 @@
-function AddingtwoArray(arr1 , arr2){
-  if(!arr1.length || !arr2.length) return undefined;
-  let x = arr1.length-1;
-  let y = arr2.length-1;
+function AddingtwoArray(arr1, arr2) {
+  if (!arr1.length || !arr2.length) return undefined;
+  let x = arr1.length - 1;
+  let y = arr2.length - 1;
   let sum = 0;
-  while(x >= 0 && y >= 0){
+  while (x >= 0 && y >= 0) {
     sum += arr1[x] + arr2[y];
     x--;
     y--;
- }
- return sum;
+  }
+  return sum;
 }
 
-console.log(AddingtwoArray([67 , 245 ,456] , [4 , 78, 32]));
+console.log(AddingtwoArray([67, 245, 456], [4, 78, 32]));
 
-function SumingEvenNumbers(obj){
-let sum = 0;
-function helper(obj){
-    for(let val in obj){
-        if(typeof obj[val] === "object"){
-            helper(obj[val])
-        }
-        else if(obj[val] % 2 == 0){
-            sum+= obj[val];
-        }
+function SumingEvenNumbers(obj) {
+  let sum = 0;
+  function helper(obj) {
+    for (let val in obj) {
+      if (typeof obj[val] === "object") {
+        helper(obj[val])
+      }
+      else if (obj[val] % 2 == 0) {
+        sum += obj[val];
+      }
     }
-}
-helper(obj);
-return sum;
+  }
+  helper(obj);
+  return sum;
 }
 
 var obj1 = {
@@ -50,20 +50,20 @@ var obj2 = {
 };
 
 
-console.log(SumingEvenNumbers(obj1));
+console.log(SumingEvenNumbers(obj2));
 
 
-function stringifyNumbers(obj){
-    const newObj = JSON.parse(JSON.stringify(obj));
-    for(let val in newObj){
-        if(typeof newObj[val] === "object" && newObj[val] !== null){
-            newObj[val] = stringifyNumbers(newObj[val])
-        }
-        else if(typeof newObj[val] === "number" && newObj[val] !== null){
-            newObj[val] = String(newObj[val])
-        }
+function stringifyNumbers(obj) {
+  const newObj = JSON.parse(JSON.stringify(obj));
+  for (let val in newObj) {
+    if (typeof newObj[val] === "object" && newObj[val] !== null) {
+      newObj[val] = stringifyNumbers(newObj[val])
     }
-    return newObj;
+    else if (typeof newObj[val] === "number" && newObj[val] !== null) {
+      newObj[val] = String(newObj[val])
+    }
+  }
+  return newObj;
 }
 
 let obj = {
