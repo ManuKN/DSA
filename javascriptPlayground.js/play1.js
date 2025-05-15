@@ -47,11 +47,12 @@ function playground2(arr) {
     if (arr[j] < secondSmall && arr[j] != small) secondSmall = arr[j];
     if (arr[j] > secondLarge && arr[j] != large) secondLarge = arr[j];
   }
+  return {secondLarge , secondSmall}
   console.log('secondSmall', secondSmall);
   console.log('secondLarge', secondLarge);
 }
 
-console.log(playground2([114, 3, 65, 7, 89, 69, 100]));
+console.log("sdfg",playground2([114, 3, 65, 7, 89, 4, 69, 100]));
 
 //check if the array is sorted
 function checkSorted(arr) {
@@ -154,13 +155,13 @@ function moveZerosToEnd(arr) {
   if (!arr.length) return 'Empty Arrary';
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] === 0) {
-      arr.push(...arr.splice(i, 1));
+        
     }
   }
   return arr;
 }
 
-console.log(moveZerosToEnd([12, 0, 45, 23, 0, 56, 76, 0]));
+console.log("nkn",moveZerosToEnd([12, 0, 45, 23, 0, 56, 76, 0]));
 
 function unionNumbers(arr1, arr2) {
   if (!arr1.length || !arr2.length) return 'Found one Empty Array';
@@ -253,7 +254,7 @@ function sortAnArray(arr) {
   }
   return arr;
 }
-console.log(sortAnArray([2, 1, 0, 2, 0, 1]));
+console.log("sfgdf",sortAnArray([2, 1, 0, 2, 0, 1]));
 
 //very important for interview please practice;
 function LongestSubStringWithGivienSum(arr, sum) {

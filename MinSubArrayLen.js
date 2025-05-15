@@ -23,7 +23,7 @@ function minSubArrayLen(arr, num) {
     for (let j = windowSize; j < arr.length; j++) {
       temp = temp - arr[j - windowSize] + arr[j];
       if (temp >= num) {
-        return arr.slice(j - windowSize + 1, j + 1).length;
+        return arr.slice(j - windowSize + 1, j + 1);
       }
     }
   }

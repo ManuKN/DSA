@@ -16,7 +16,7 @@ function GoodNumbers(n) {
 }
 
 function sortStackInRecursion(stack) {
-  if (!stack.length) return 'Empty stack';
+  if (!stack.length) return "Empty stack";
   function InsertInSortedStack(stackElement, element) {
     if (
       !stackElement.length ||
@@ -32,7 +32,7 @@ function sortStackInRecursion(stack) {
   }
 
   function sortRecursively(stack) {
-    if (!stack.length) return 'Empty stack';
+    if (!stack.length) return "Empty stack";
     const temp = stack.pop();
     sortRecursively(stack);
     InsertInSortedStack(stack, temp);
@@ -52,7 +52,7 @@ console.log(sortStackInRecursion([11, 2, 32, 3, 41]));
  * @returns {Array} The reversed stack, or 'Empty Stack' if the input stack is empty.
  */
 function ReverseAStack(stack) {
-  if (!stack.length) return 'Empty Stack';
+  if (!stack.length) return "Empty Stack";
   if (stack.length === 0) return;
   let temp = stack.pop();
 
@@ -90,17 +90,17 @@ function GenerateParathesis(n) {
   let res = [];
   function backtacking(openN, closedN) {
     if (openN === n && closedN === n) {
-      res.push(stack.join(''));
+      res.push(stack.join(""));
       return;
     }
 
     if (openN < n) {
-      stack.push('(');
+      stack.push("(");
       backtacking(openN + 1, closedN);
       stack.pop();
     }
     if (closedN < openN) {
-      stack.push(')');
+      stack.push(")");
       backtacking(openN, closedN + 1);
       stack.pop();
     }
@@ -112,7 +112,7 @@ function GenerateParathesis(n) {
 console.log(GenerateParathesis(3));
 
 function PrintAllSubsequencesPowerSet(str) {
-  if (!str.length) return [''];
+  if (!str.length) return [""];
 
   const result = [];
 
@@ -127,15 +127,15 @@ function PrintAllSubsequencesPowerSet(str) {
     generateSubsequences(index + 1, currentSubsequence + str[index]);
   }
 
-  generateSubsequences(0, '');
+  generateSubsequences(0, "");
 
   return result;
 }
 
-console.log(PrintAllSubsequencesPowerSet('abc'));
+console.log(PrintAllSubsequencesPowerSet("abc"));
 
 function PrefectSumProblem(arr, target) {
-  if (!arr.length) return 'Empty Array';
+  if (!arr.length) return "Empty Array";
   let count = 0;
   function sumUp(index, currentSum) {
     if (index === arr.length) {
@@ -166,10 +166,10 @@ function BetterString(str1, str2) {
   else return str1;
 }
 
-console.log(BetterString('abc', 'cba'));
+console.log(BetterString("abc", "cba"));
 
 function PrintAllSubsequencesPowerSet(nums) {
-  if (!nums.length) return [''];
+  if (!nums.length) return [""];
 
   const result = [];
 
@@ -226,14 +226,14 @@ console.log(permute([1, 2, 3]));
 
 function letterCombinations(digits) {
   const phone = {
-    2: ['a', 'b', 'c'],
-    3: ['d', 'e', 'f'],
-    4: ['g', 'h', 'i'],
-    5: ['j', 'k', 'l'],
-    6: ['m', 'n', 'o'],
-    7: ['p', 'q', 'r', 's'],
-    8: ['t', 'u', 'v'],
-    9: ['w', 'x', 'y', 'z'],
+    2: ["a", "b", "c"],
+    3: ["d", "e", "f"],
+    4: ["g", "h", "i"],
+    5: ["j", "k", "l"],
+    6: ["m", "n", "o"],
+    7: ["p", "q", "r", "s"],
+    8: ["t", "u", "v"],
+    9: ["w", "x", "y", "z"],
   };
 
   if (!digits) return [];
@@ -248,11 +248,11 @@ function letterCombinations(digits) {
       Generate(index + 1, combination + letter);
     }
   }
-  Generate(0, '');
+  Generate(0, "");
   return result;
 }
 
-console.log(letterCombinations('567'));
+console.log(letterCombinations("567"));
 
 //Restore IP Address
 
@@ -269,8 +269,6 @@ function restoreIpAddresses(s) {
       return;
     }
 
-    console.log("making things in the best part")
-
     for (let len = 1; len <= 3; len++) {
       if (index + len > s.length) break;
       const segment = s.substring(index, index + len);
@@ -278,7 +276,7 @@ function restoreIpAddresses(s) {
       if (isValidSegment(segment)) {
         Generate(
           index + len,
-          combination + (parts > 0 ? '.' : '') + segment,
+          combination + (parts > 0 ? "." : "") + segment,
           parts + 1
         );
       }
@@ -286,49 +284,172 @@ function restoreIpAddresses(s) {
   }
 
   function isValidSegment(segment) {
-    if (segment.length > 1 && segment[0] === '0') return false;
+    if (segment.length > 1 && segment[0] === "0") return false;
     const num = parseInt(segment, 10);
     return num >= 0 && num <= 255;
   }
 
-  Generate(0, '', 0);
+  Generate(0, "", 0);
   return results;
 }
 
-console.log(restoreIpAddresses('25525511135'));
+console.log(restoreIpAddresses("25525511135"));
 
+function PhoneIp(digits) {
+  const phone = {
+    2: ["a", "b", "c"],
+    3: ["d", "e", "f"],
+    4: ["g", "h", "i"],
+    5: ["j", "k", "l"],
+    6: ["m", "n", "o"],
+    7: ["p", "q", "r", "s"],
+    8: ["t", "u", "v"],
+    9: ["w", "x", "y", "z"],
+  };
+  if (!digits) return [];
+  const results = [];
+  function helper(index, combination) {
+    if (index === digits.length) {
+      results.push(combination);
+      return;
+    }
 
-
-function PhoneIp(digits){
-const phone = {
-    2: ['a', 'b', 'c'],
-    3: ['d', 'e', 'f'],
-    4: ['g', 'h', 'i'],
-    5: ['j', 'k', 'l'],
-    6: ['m', 'n', 'o'],
-    7: ['p', 'q', 'r', 's'],
-    8: ['t', 'u', 'v'],
-    9: ['w', 'x', 'y', 'z'],
-}
-if(!digits) return [];
-const results = [];
-function helper(index , combination){
-   if(index === digits.length){
-     results.push(combination);
-     return;
-   }
-
-   const letters = phone[digits[index]];
-   console.log(letters)
-   for(let letter of letters){
-      helper(index + 1 , combination + letter)
-   }
-}
-helper(0 , '')
-return results;
+    const letters = phone[digits[index]];
+    console.log(letters);
+    for (let letter of letters) {
+      helper(index + 1, combination + letter);
+    }
+  }
+  helper(0, "");
+  return results;
 }
 
-console.log(PhoneIp('345'));
+console.log(PhoneIp("345"));
 
+function ArrayChunk(arr, size) {
+  const result = [];
+  if (!arr.length) return undefined;
+  for (let i = 0; i < arr.length; i += size) {
+    result.push(arr.slice(i, i + size));
+  }
+  return result;
+}
 
-function
+console.log(ArrayChunk([1, 2, 3, 4, 5, 6, 7, 8, 9], 2));
+
+const obj = [
+  { role: "user" },
+  { role: "student" },
+  { role: "user" },
+  { role: "student" },
+  { role: "user" },
+];
+
+const roles = ["user", "student"];
+
+function groupObject(role, filObj) {
+  let result = {};
+  for (let i = 0; i < roles.length; i++) {
+    result[role[i]] = filObj.filter((item) => item.role === role[i]);
+  }
+  return result;
+}
+
+console.log(groupObject(roles, obj));
+
+//rotate array by K
+
+function RotateArray(arr, k = 1) {
+  return arr.slice(k).concat(arr.slice(0, k));
+}
+
+nums = [1, 2, 3, 4, 5, 6, 7];
+
+console.log(RotateArray(nums, 3));
+
+function secondlargest(arr) {
+  const result = arr.sort((a, b) => b - a);
+  return result[1];
+}
+
+console.log(secondlargest(nums));
+
+function removeDuplicates(arr) {
+  const result = [];
+  for (let i = 0; i < arr.length; i++) {
+    let isDuplicate = false;
+    for (let j = 0; j < result.length; j++) {
+      if (result[j] === arr[i]) {
+        isDuplicate = true;
+        break;
+      }
+    }
+    if (!isDuplicate) {
+      result[result.length] = arr[i];
+    }
+  }
+  return result;
+}
+
+console.log(removeDuplicates([1, 2, 3, 1, 2, 3, 4, 1]));
+
+//Maximum subArray using kadanes algo
+function MaxSubArray(arr) {
+  let maxSum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    let currentSum = 0;
+    for (let j = i; j < arr.length; j++) {
+      currentSum += arr[j];
+      maxSum = Math.max(maxSum, currentSum);
+    }
+  }
+  return maxSum;
+}
+
+console.log(MaxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]));
+
+function TwoSum(arr, target) {
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i; j < arr.length; j++) {
+      if (arr[i] + arr[j] === target) {
+        return [i, j];
+      }
+    }
+  }
+}
+
+console.log(TwoSum([2, 7, 11, 15], 13));
+
+function BuyandSell(arr) {
+  let buy = arr[0];
+  let sell = 0;
+  for (let i = 0; i < arr.length; i++) {
+    const profit = arr[i] - buy;
+    if (profit > sell) {
+      sell = profit;
+    }
+    if (arr[i] < buy) {
+      buy = arr[i];
+    }
+  }
+  return sell;
+}
+
+console.log(BuyandSell([7, 1, 5, 3, 6, 4]));
+
+function MissingNumbers(arr) {
+  let max = arr.length;
+  while (max > 0) {
+    if (!arr.includes(max)) {
+      if (max >= 0) return max;
+      else return 0;
+    }
+    max--;
+  }
+}
+
+console.log(MissingNumbers([0, 1]));
+
+console.log([1, 2, 3, 4, 5, 6, 7, 8, 9].map((data) => data % 2 === 0));
+
+console.log([1, 2, 3, 4, 5, 6, 7, 8, 9].filter((data) => data % 2 === 0));
