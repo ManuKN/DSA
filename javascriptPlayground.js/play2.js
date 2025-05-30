@@ -250,7 +250,7 @@ Function.prototype.customCall = function (context, ...args) {
 
 function firstAndSecondLargest(arr) {
   let largest = arr[0];
-  let secondLargest;
+  let secondLargest = -Infinity;
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] > largest) {
       secondLargest = largest;
