@@ -211,3 +211,54 @@ function RemoveKDigits(str, K) {
 }
 
 console.log(RemoveKDigits('10200', 1));
+
+
+function CountRepeatedNumbers(str) {
+  let result = [];
+  let count = 1;
+  for (let i = 1; i <= str.length; i++) {
+    if (str[i] === str[i - 1]) {
+      count++
+    } else {
+      result.push(str[i - 1]);
+      result.push(count);
+      count = 1;
+    }
+  }
+  return result.join("");
+}
+
+console.log(CountRepeatedNumbers('2233344445555566622'));
+
+function curring(a) {
+  return function (b) {
+    return function (c) {
+      return function () {
+        return a + b + c
+      }
+    }
+  }
+}
+
+function currySum(n) {
+  const args = [];
+
+  function inner(arg) {
+    args.push(arg);
+
+    if (args.length === n) {
+      return args.reduce((sum, val) => sum + val, 0);
+    }
+
+    return inner;
+  }
+
+  return inner;
+}
+
+const result = currySum(6)(1)(2)(3)(4)(5)(6);
+console.log(result); // Output: 21
+
+
+console.log(curring(1)(2)(3)());
+

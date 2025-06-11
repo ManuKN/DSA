@@ -1,4 +1,4 @@
-//since class are object generator this node class will generate a node object which as val and next val of ther node
+//since class are object generator this node class will generate a node object which as val and next val of there node
 class Node {
   constructor(val) {
     this.val = val;
@@ -111,6 +111,20 @@ class SingleLinkedList {
     prevnode.next = removednode.next;
     this.length--;
     return true;
+  }
+
+  ReverseMethod2() {
+    if (!this.head || !this.length) return undefined;
+    let node = this.head;
+    this.head = this.tail;
+    this.tail = node;
+    let next;
+    let prev = null;
+    for (let i = 0; i < this.length; i++) {
+      next = node.next;
+      node.next = prev;
+      prev = node;   
+    }
   }
 
   Reverese() {

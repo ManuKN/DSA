@@ -364,7 +364,7 @@ function kadanesAlgo(arr) {
     currentSum = Math.max(arr[i], currentSum + arr[i])
     maxSoFar = Math.max(currentSum, maxSoFar)
   }
-  return maxSoFar
+  return maxSoFar;
 }
 
 console.log(kadanesAlgo([5, 4, -1, 7, 8]));
@@ -405,4 +405,94 @@ function MergeIntervals(intervals) {
 }
 
 console.log(MergeIntervals([[1, 3], [2, 6], [8, 10], [15, 18]]));
+
+
+function SubsetUsingRecursion(arr) {
+  let result = [];
+  function backtraking(start, path) {
+    result.push([...path]);
+    for (let i = start; i < arr.length; i++) {
+      path.push(arr[i]);
+      backtraking(i + 1, path);
+      path.pop()
+    }
+  }
+  backtraking(0, []);
+  return result;
+}
+
+console.log(SubsetUsingRecursion([1, 2, 3]));
+
+function validParenthese(str) {
+  const stack = [];
+  const map = {
+    ")": "(",
+    "}": "{",
+    "]": "["
+  }
+  for (let char of str) {
+    if (char === "(" || char === "{" || char === "[") {
+      stack.push(char)
+    } else {
+      if (stack.pop() !== map[char]) {
+        return false
+      }
+    }
+  }
+  return stack.length === 0;
+}
+
+console.log(validParenthese("()[]{}"));
+
+function hammingDistance(x, y) {
+  let xor = x ^ y;
+  let distance = 0;
+  while (xor > 0) {
+    distance += xor & 1;
+    xor >>= 1;
+  }
+  return distance;
+}
+
+console.log(hammingDistance(1, 4));
+
+class MinStack {
+  constructor() {
+    this.stack = [];
+    this.minStack = [];
+  }
+
+  push(val) {
+    this.stack.push(val);
+    if (this.minStack.length === 0 || val <= this.minStack[this.minStack.length - 1]) {
+      this.minStack.push(val);
+    }
+  }
+
+  pop() {
+    const popped = this.stack.pop();
+    if (popped === this.minStack[this.minStack.length - 1]) {
+      this.minStack.pop();
+    }
+  }
+
+  top() {
+    return this.stack[this.stack.length - 1];
+  }
+
+  getMin() {
+    return this.minStack[this.minStack.length - 1];
+  }
+}
+
+
+const minStack = new MinStack();
+minStack.push(-3);
+minStack.push(2);
+minStack.push(4);
+minStack.push(-1);
+console.log(minStack)
+console.log(minStack.getMin());
+console.log(minStack.top())
+
 
