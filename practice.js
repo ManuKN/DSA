@@ -386,6 +386,7 @@ function sortAnArray(arr) {
   }
   return arr;
 }
+
 console.log("sfgdf", sortAnArray([2, 1, 0, 2, 0, 1]));
 
 function MergeIntervals(intervals) {
@@ -493,6 +494,108 @@ minStack.push(4);
 minStack.push(-1);
 console.log(minStack)
 console.log(minStack.getMin());
-console.log(minStack.top())
+console.log(minStack.top());
+
+
+function mergeSort(arr) {
+  if (arr.length === 1) return arr;
+  let mid = Math.floor(arr.length / 2);
+  const left = mergeSort(arr.slice(0, mid));
+  const right = mergeSort(arr.slice(mid));
+  return arrayCombainers(left, right)
+}
+
+console.log(mergeSort([7, 3, 4, 6, 8, 89, 4, 3]))
+
+function arrayCombainers(left, right) {
+  if (left.length === 0 && right.lenght === 0) return 'empty array';
+  let result = [];
+  let i = 0;
+  let j = 0;
+  while (i < left.length && j < right.length) {
+    if (left[i] < right[j]) {
+      result.push(left[i]);
+      i++;
+    } else {
+      result.push(right[j]);
+      j++
+    }
+  }
+
+  if (i < left.length) {
+    result = result.concat(left.slice(i))
+  }
+  if (j < right.length) {
+    result = result.concat(right.slice(j))
+  }
+  return result;
+}
+
+// function sum(a, b) {
+//   return a + b;
+// }
+// module.exports = sum;
+
+function slidingWindowMax(arr, k) {
+  let result = [];
+
+  for (let i = 0; i < arr.length - k; i++) {
+    let max = -Infinity;
+
+    for (let j = i; j < i + k; j++) {
+      if (arr[j] > max) {
+        max = arr[j];
+      }
+    }
+
+    result.push(max);
+  }
+
+  return result;
+}
+
+console.log(slidingWindowMax([7, 3, 4, 6, 8, 89, 4, 3], 3));
+
+function longestSubstringWithoutRepeatChars(str) {
+  let seen = new Set();
+  let left = 0;
+  let maxLength = 0;
+  let longest = "";
+
+  for (let right = 0; right < str.length; right++) {
+    while (seen.has(str[right])) {
+      seen.delete(str[left]);
+      left++;
+    }
+    seen.add(str[right]);
+
+    if (right - left + 1 > maxLength) {
+      maxLength = right - left + 1;
+      longest = str.slice(left, right + 1);
+    }
+  }
+
+  return longest;
+}
+
+console.log(longestSubstringWithoutRepeatChars("sbuyfbshbdfkjusb"));
+
+function slidingWindowMin(arr, k) {
+  let result = [];
+  for (let i = 0; i < arr.length; i++) {
+    let min = 0;
+    for (let j = i; j < i + k; j++) {
+      if (arr[j] < min) {
+        min = arr[j]
+      }
+    }
+    result.push(min)
+  }
+  return result;
+}
+
+console.log(slidingWindowMin([7, 3, -4, 6, -8, 89, 4, -3], 3));
+
+
 
 

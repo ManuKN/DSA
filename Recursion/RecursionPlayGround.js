@@ -8,7 +8,7 @@ function power(base, ex) {
   return base * power(base, ex - 1);
 }
 
-console.log(power(2, -3));
+console.log(power(2, 4));
 
 function GoodNumbers(n) {
   if ((n = 0)) {
@@ -404,7 +404,7 @@ function MaxSubArray(arr) {
       maxSum = Math.max(maxSum, currentSum);
     }
   }
-  return maxSum;
+  return maxSum;   
 }
 
 console.log(MaxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]));
@@ -454,3 +454,75 @@ console.log(MissingNumbers([0, 1]));
 console.log([1, 2, 3, 4, 5, 6, 7, 8, 9].map((data) => data % 2 === 0));
 
 console.log([1, 2, 3, 4, 5, 6, 7, 8, 9].filter((data) => data % 2 === 0));
+
+function ValidMatrix(matrix) {
+  const n = matrix.length;
+
+  for (let row of matrix) {
+    if (row.length !== n) {
+      return false;
+    }
+  }
+
+  function isValidSet(arr) {
+    const seen = new Set();
+
+    for (let num of arr) {
+
+      if (num < 1 || num > n) return false;
+
+
+      if (seen.has(num)) return false;
+
+
+      seen.add(num);
+    }
+
+    return seen.size === n;
+  }
+
+  for (let i = 0; i < n; i++) {
+    const row = matrix[i];
+    if (!isValidSet(row)) {
+      return false;
+    }
+  }
+
+  for (let j = 0; j < n; j++) {
+    const col = [];      
+
+    for (let i = 0; i < n; i++) {
+      col.push(matrix[i][j]);
+    }
+
+    if (!isValidSet(col)) {
+      return false;
+    }
+    return true;
+  }
+}
+
+const grid1 = [
+  [1, 2],
+  [2, 1]
+]
+
+console.log(ValidMatrix(grid1)); 
+
+function LongestSubStringWithoutRepeatingChars(str) {
+  let maxLength = 0;
+  let start = 0;
+  const charIndexMap = new Map();
+
+  for (let i = 0; i < str.length; i++) {
+    if (charIndexMap.has(str[i])) {
+      start = Math.max(start, charIndexMap.get(str[i]) + 1);
+    }
+    charIndexMap.set(str[i], i);
+    maxLength = Math.max(maxLength, i - start + 1);
+  }
+
+  return {charIndexMap , maxLength};
+}
+
+console.log(LongestSubStringWithoutRepeatingChars("abcabcbb")); 

@@ -262,3 +262,18 @@ console.log(result); // Output: 21
 
 console.log(curring(1)(2)(3)());
 
+// best example for currying
+function currying(num) {
+  let total = num;
+
+  function next(val) {
+    if (val === undefined) return total;
+    total += val;
+    return next;
+  }
+
+  return next;
+}
+
+console.log(currying(1)(2)(3)(4)(5)())
+

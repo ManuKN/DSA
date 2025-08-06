@@ -282,6 +282,22 @@ function LongestSubStringWithGivienSum(arr, sum) {
 
 console.log(LongestSubStringWithGivienSum([1, 4, 2, 10, 23, 3, 1, 0, 20], 7));
 
+function slidingWindowMax(arr, k) {
+  let result = [];
+  for (let i = 0; i < arr.length; i++) {
+    let max = -Infinity
+    for (let j = i; i < i + k; j++) {
+      if (arr[j] > max) {
+        max = arr[j]
+      }
+    }
+    result.push(max)
+  }
+  return result;
+}
+
+console.log(slidingWindowMax([7, 3, 4, 6, 8, 89, 4, 3], 3))
+
 function twoSum(arr, sum) {
   if (!arr.length) return 'Empty Array';
   let start = 0;
@@ -315,4 +331,5 @@ function sortAnArray(arr) {
   return arr;
 }
 
-console.log("fdgf", sortAnArray([2, 1, 0, 2, 0, 1]));
+console.log(sortAnArray([2, 1, 0, 2, 0, 1]));
+
